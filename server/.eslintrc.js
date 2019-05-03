@@ -17,6 +17,7 @@ module.exports = {
     'vue'
   ],
   'rules': {
-    'semi' : [2, 'always']
+    'semi' : [2, 'always'],
+    'no-unused-vars': 'off'
   }
 }
