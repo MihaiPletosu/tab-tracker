@@ -7,30 +7,35 @@
         <v-toolbar-title>Register</v-toolbar-title>
       </v-toolbar>
       <div class="pl-4 pr-4 pt-2 pb-2">
-        <v-text-field
-          type="email"
-          name="email"
-          label="email"
-          box
-          v-model="email">
-        </v-text-field>
-        <br>
-        <v-text-field
-          type="password"
-          name="password"
-          label="password"
-          box
-          v-model="password">
+        <form
+          name="tab-tracker-form"
+          autocomplete="off">
+          <v-text-field
+            type="email"
+            name="email"
+            label="email"
+            box
+            v-model="email">
           </v-text-field>
-        <br/>
-        <div class="error" v-html="error">
           <br>
-        </div>
-        <v-btn class="cyan"
-          dark
-          @click="register">
-          Register
-        </v-btn>
+          <v-text-field
+            type="password"
+            name="password"
+            label="password"
+            autocomplete="new-password"
+            box
+            v-model="password">
+            </v-text-field>
+          <br/>
+          <div class="error" v-html="error">
+            <br>
+          </div>
+          <v-btn class="cyan"
+            dark
+            @click="register">
+            Register
+          </v-btn>
+        </form>
       </div>
     </div>
   </v-flex>
@@ -56,6 +61,8 @@ export default {
         email: this.email,
         password: this.password
       });
+      this.$store.dispatch('setToken', response.data.token);
+      this.$store.dispatch('setUser', response.data.user);
       }
       catch(error){
         this.error = error.response.data.error;

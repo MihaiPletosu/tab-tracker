@@ -9,7 +9,10 @@
     "test:e2e": "vue-cli-service test:e2e",
     "test:unit": "vue-cli-service test:unit"
   },
-  "dependencies": {},
+  "dependencies": {
+    "vuex": "^3.1.1",
+    "vuex-router-sync": "^5.0.0"
+  },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.7.0",
     "@vue/cli-plugin-e2e-nightwatch": "^3.7.0",

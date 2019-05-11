@@ -8,12 +8,16 @@
             </span>
         </v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-toolbar-items>
-            <v-btn flat dark
+        <v-toolbar-items v-if="!$store.state.isUserLoggedIn">
+            <v-btn
+                flat 
+                dark
                 @click="navigateTo({name: 'login'})">
                 Login
             </v-btn>
-            <v-btn flat dark
+            <v-btn
+                flat 
+                dark
                 @click="navigateTo({name: 'register'})">
                 Sign Up
             </v-btn>
