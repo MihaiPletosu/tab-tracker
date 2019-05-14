@@ -3,7 +3,6 @@
     <v-app>
       <page-header/>
       <v-container fluid>
-        Hello World
         <router-view></router-view>
       </v-container>
     </v-app>
