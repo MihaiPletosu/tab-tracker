@@ -23,8 +23,8 @@
                         <br>
                         </div>
                         <v-btn class="cyan"
-                        dark
-                        @click="login">
+                            dark
+                            @click="login">
                             Login
                         </v-btn>
                 </panel>
