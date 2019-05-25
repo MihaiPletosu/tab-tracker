@@ -4,32 +4,44 @@
             <v-flex xs4>
                 <panel title="Add a song">
                     <v-text-field
-                        label="Title"
+                        required
+                        :rules="[required]"
+                        label="Title*"
                         v-model="song.title"
                     ></v-text-field>
 
                     <v-text-field
-                        label="Artist"
+                        required
+                        :rules="[required]"
+                        label="Artist*"
                         v-model="song.artist"
                     ></v-text-field>
 
                     <v-text-field
-                        label="Genre"
+                        required
+                        :rules="[required]"
+                        label="Genre*"
                         v-model="song.genre"
                     ></v-text-field>
 
                     <v-text-field
-                        label="Album"
+                        required
+                        :rules="[required]"
+                        label="Album*"
                         v-model="song.album"
                     ></v-text-field>
 
                     <v-text-field
-                        label="Album Image Url"
+                        required
+                        :rules="[required]"
+                        label="Album Image Url*"
                         v-model="song.albumImageUrl"
                     ></v-text-field>
 
                     <v-text-field
-                        label="Youtube ID"
+                        required
+                        :rules="[required]"
+                        label="Youtube ID*"
                         v-model="song.youtubeId"
                     ></v-text-field>
                 </panel>
@@ -38,15 +50,24 @@
             <v-flex xs8>
                 <panel class="ml-2">
                     <v-textarea
-                        label="Tab"
+                        required
+                        :rules="[required]"
+                        label="Tab*"
                         v-model="song.tab"
                     ></v-textarea>
                     <v-textarea
-                        label="Lyrics"
+                        required
+                        :rules="[required]"
+                        label="Lyrics*"
                         v-model="song.lyrics"
                     ></v-textarea>
                 </panel>
 
+                <div
+                    v-if="error" 
+                    class="danger-alert">
+                    {{ error }}
+                </div>
                 <v-btn class="cyan"
                 dark
                 @click="create">
@@ -73,16 +94,27 @@ export default {
                 youtubeId: null,
                 lyrics: null,
                 tab: null
-            }
+            },
+            required: (value) => !!value || 'Required.',
+            error: null
         };
     },
     methods: {
         async create () {
-            // call AP
+            this.error = null;
+            const areAllFieldsFilledIn = Object
+            .keys(this.song)
+            .every(key => !!this.song[key]);
+            
+            if (!areAllFieldsFilledIn){
+                this.error = 'Please fill in all the required fields.';
+                return;
+            }
+
             try{
                await SongsService.post(this.song);
                this.$router.push({
-                   name: 'song'
+                   name: 'songs'
                });
             }catch(err){
                 console.log(err);

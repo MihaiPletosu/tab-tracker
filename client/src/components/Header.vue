@@ -11,7 +11,7 @@
              <v-btn
                 flat 
                 dark
-                @click="navigateTo({name: 'song'})">
+                @click="navigateTo({name: 'songs'})">
                 Browse
             </v-btn>
         </v-toolbar-items>
