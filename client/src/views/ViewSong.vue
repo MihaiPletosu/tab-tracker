@@ -1,42 +1,29 @@
 <template>
-    <v-layout>
-        <v-flex xs6>
-            <panel title="Song">
-                <v-layout row wrap>
-                    <v-flex xs6>
-                        <div class="song-title">
-                            {{song.title}}
-                        </div>
-                        <div class="song-artist">
-                            {{song.artist}}
-                        </div>
-                        <div class="song-genre">
-                            {{song.genre}}
-                        </div>
-                    </v-flex>
+    <div>
+        <v-layout>
+            <v-flex xs6>
+               <song-metadata :song="song"/>
+            </v-flex>
+            <v-flex xs6 class="ml-2">
+                <you-tube :youtubeId="song.youtubeId"/>
+            </v-flex>
+        </v-layout>
 
-                    <v-flex xs6>
-                        <img class="album-image" :src="song.albumImageUrl"/>
-                        <br/>
-                        {{song.album}}
-                    </v-flex>
-                </v-layout>
-            </panel>
-        </v-flex>
-        <v-flex xs6 class="ml-2">
-            <panel title="Tabs">
-                 <textarea
-                    readonly
-                    v-model="song.tab"
-                    ></textarea>
-            </panel>
-        </v-flex>
-    </v-layout>
+        <v-layout>
+            <v-flex xs6>
+            </v-flex>
+            <v-flex xs6 class="ml-2 mt-2">
+                <lyrics :song="song"/>
+            </v-flex>
+        </v-layout>
+    </div>
 </template>
 
 <script>
 import SongsService from '@/services/SongsService';
-import Panel from '@/components/Panel';
+import SongMetadata from '@/components/SongMetadata';
+import YouTube from '@/components/YouTube';
+import Lyrics from '@/components/Lyrics';
 
 export default {
     data () {
@@ -49,24 +36,12 @@ export default {
         this.song = (await SongsService.show(songId)).data;
     },
     components: {
-        Panel
+        SongMetadata,
+        YouTube,
+        Lyrics
     }
 };
 </script>
 
 <style scoped>
-.album-image{
-    max-width: 100%;
-}
-
-textarea{
-    width: 100%;
-    font-family: monospace;
-    border: none;
-    height: 600px;
-    border-style: none;
-    border-color: transparent;
-    overflow: auto;
-    padding: 40px;
-}
 </style>
