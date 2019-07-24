@@ -9,10 +9,11 @@
             </v-flex>
         </v-layout>
 
-        <v-layout>
+        <v-layout class="mt-2">
             <v-flex xs6>
+                <tab :song="song"/>
             </v-flex>
-            <v-flex xs6 class="ml-2 mt-2">
+            <v-flex xs6 class="ml-2">
                 <lyrics :song="song"/>
             </v-flex>
         </v-layout>
@@ -24,6 +25,7 @@ import SongsService from '@/services/SongsService';
 import SongMetadata from '@/components/SongMetadata';
 import YouTube from '@/components/YouTube';
 import Lyrics from '@/components/Lyrics';
+import Tab from '@/components/Tab';
 
 export default {
     data () {
@@ -38,7 +40,8 @@ export default {
     components: {
         SongMetadata,
         YouTube,
-        Lyrics
+        Lyrics,
+        Tab
     }
 };
 </script>

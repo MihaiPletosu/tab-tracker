@@ -6,6 +6,7 @@ import Login from './views/Login.vue';
 import Songs from './views/Songs.vue';
 import CreateSong from './views/CreateSong.vue';
 import ViewSong from './views/ViewSong.vue';
+import EditSong from './views/EditSong.vue';
 
 Vue.use(Router);
 
@@ -40,6 +41,11 @@ export default new Router({
       path: '/songs/:songId',
       name: 'song',
       component: ViewSong
+    },
+    {
+      path: '/songs/:songId/edit',
+      name: 'song-edit',
+      component: EditSong
     }
   ]
 });
